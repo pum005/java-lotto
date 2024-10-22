@@ -8,8 +8,6 @@ import java.util.stream.IntStream;
 
 public class Lottos {
 
-    private static final List<LottoRank> lottoRanks = List.of(LottoRank.FIFTH, LottoRank.FOUR, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST);
-
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -26,22 +24,10 @@ public class Lottos {
         }
     }
 
-    public long match(WinningLotto winningLotto, LottoRank rank) {
-        return this.lottos.stream()
-                .filter((o) -> o.match(winningLotto) == rank)
-                .count();
-    }
-
-    public List<Long> calculateCountOfMatch(WinningLotto lotto) {
-        return lottoRanks.stream()
-                .map(rank -> match(lotto, rank))
-                .collect(Collectors.toList());
-    }
-
-    public long calculateProfit(WinningLotto winningLotto) {
-        return IntStream.range(0, lottoRanks.size())
-        .mapToLong(i -> match(winningLotto, lottoRanks.get(i)) * lottoRanks.get(i).getPrizeMoney())
-        .sum();
+    public LottoRanks match(WinningLotto winningLotto) {
+        return new LottoRanks(this.lottos.stream()
+                .map(o -> o.match(winningLotto))
+                .collect(Collectors.toList()));
     }
 
     @Override

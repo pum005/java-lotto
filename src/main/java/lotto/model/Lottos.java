@@ -28,7 +28,7 @@ public class Lottos {
 
     public long match(WinningLotto winningLotto, LottoRank rank) {
         return this.lottos.stream()
-                .filter((o) -> o.match(winningLotto, rank))
+                .filter((o) -> o.match(winningLotto) == rank)
                 .count();
     }
 

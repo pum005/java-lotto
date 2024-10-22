@@ -28,6 +28,6 @@ public class LottoServiceTest {
 
         Statistics statistics = lottoService.generateStatistics(lottos, winningLottos, price);
 
-        assertThat(statistics).isEqualTo(new Statistics(List.of(1L, 1L, 0L, 0L, 0L), 27.5));
+        assertThat(statistics).isEqualTo(new Statistics(List.of(1L, 1L, 0L, 0L, 0L, 0L), 27.5));
     }
 }

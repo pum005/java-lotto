@@ -33,11 +33,10 @@ public class LottoTest {
     @Test
     void match_테스트() {
         Lotto lotto = new Lotto("1,2,3,4,5,6");
-        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,8,9), 6);
-        LottoRank rank = LottoRank.FOUR;
-        boolean expected = lotto.match(winningLotto, rank);
+        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,7), 9);
+        LottoRank rank = lotto.match(winningLotto);
 
-        assertThat(expected).isEqualTo(true);
+        assertThat(rank).isEqualTo(LottoRank.THIRD);
     }
 
 

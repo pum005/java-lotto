@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     public static final String NUMBER_INIT_ERROR_MESSAGE = "0 ~ 45 사이에 숫자를 입력하세요!";
     public static final int MIN_NUMBER = 1;
@@ -20,9 +20,6 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public int getNumber() {
-        return this.number;
-    }
 
     @Override
     public String toString() {
@@ -41,5 +38,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hashCode(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return this.number - o.number;
     }
 }

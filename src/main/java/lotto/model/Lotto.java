@@ -54,7 +54,7 @@ public class Lotto {
     @Override
     public String toString() {
         return "[" + numbers.stream()
-                        .sorted(Comparator.comparingInt(LottoNumber::getNumber))
+                        .sorted()
                         .map(LottoNumber::toString)
                         .collect(Collectors.joining(NUMBER_SEPERATOR))
                 + "]";

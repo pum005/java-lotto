@@ -7,36 +7,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public enum LottoRank {
-    FIRST(6, 2_000_000_000) {
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch;
-        }
-    },
-    SECOND(5, 30_000_000) {
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch && countOfBonusMatch == 1;
-        }
-    },
-    THIRD(5, 1_500_000) {
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch && countOfBonusMatch == 0;
-        }
-    },
-    FOUR(4, 50_000){
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch;
-        }
-    },
-    FIFTH(3, 5_000) {
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch;
-        }
-    },
-    MISS(0, 0) {
-        public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch) {
-            return getCountOfMatch() == countOfLottoMatch;
-        }
-    };
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOUR(4, 50_000),
+    FIFTH(3, 5_000),
+    MISS(0, 0);
 
     private final int countOfMatch;
     private final int prizeMoney;
@@ -70,5 +46,13 @@ public enum LottoRank {
     }
 
 
-    public abstract boolean isMatch(long countOfLottoMatch, long countOfBonusMatch);
+    public boolean isMatch(long countOfLottoMatch, long countOfBonusMatch){
+        if (this == SECOND) {
+            return getCountOfMatch() == countOfLottoMatch && countOfBonusMatch == 1;
+        }
+        if (this == THIRD) {
+            return getCountOfMatch() == countOfLottoMatch && countOfBonusMatch == 0;
+        }
+        return getCountOfMatch() == countOfLottoMatch;
+    }
 }
